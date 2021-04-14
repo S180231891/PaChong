@@ -33,6 +33,7 @@
         <list>
           <option value="typing.TextIO.__setitem__" />
           <option value="tuple.set_zlabel" />
+          <option value="int.isdigit" />
         </list>
       </option>
     </inspection_tool>
