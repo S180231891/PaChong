@@ -4,8 +4,12 @@
 # @File : Day7-51job爬虫.py
 # @Software : PyCharm
 """
-    异步爬取：
-
+    异步爬取：抓取json
+    数据分类：
+        数据分析  950   ：https://search.51job.com/list/000000,000000,0000,00,9,99,%25E6%2595%25B0%25E6%258D%25AE%25E5%2588%2586%25E6%259E%2590,2,1.html?lang=c&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&ord_field=0&dibiaoid=0&line=&welfare=
+        前端     950   ：https://search.51job.com/list/000000,000000,0000,00,9,99,%25E5%2589%258D%25E7%25AB%25AF,2,1.html?lang=c&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&ord_field=0&dibiaoid=0&line=&welfare=
+        python  950   : https://search.51job.com/list/000000,000000,0000,00,9,99,python,2,1.html?lang=c&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&ord_field=0&dibiaoid=0&line=&welfare=
+        ui      950   ：https://search.51job.com/list/000000,000000,0000,00,9,99,UI,2,1.html?lang=c&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&ord_field=0&dibiaoid=0&line=&welfare=
 """
 import json
 import urllib.request, urllib.error
@@ -13,18 +17,16 @@ import xlwt
 import re
 import time
 import pymysql
+import sqlite3
 
 
 def main():
-    URL = "https://search.51job.com/list/000000,000000,0000,00,9,99," \
-          "%25E6%2595%25B0%25E6%258D%25AE%25E5%2588%2586%25E6%259E%2590,2," \
-          "{}.html?lang=c&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&ord_field=0" \
-          "&dibiaoid=0&line=&welfare= "
+    URL = "https://search.51job.com/list/000000,000000,0000,00,9,99,%25E6%2595%25B0%25E6%258D%25AE%25E5%2588%2586%25E6%259E%2590,2,{}.html?lang=c&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&ord_field=0&dibiaoid=0&line=&welfare="
     # 避免反爬机制：1时间间隔   2代理
     dataList = getData(URL)
-    # saveDataList(dataList)
-    path = "51job.xls"
-    saveXlwt(dataList, path)
+    saveDataList(dataList)
+    # path = "51job.xls"
+    # saveXlwt(dataList, path)
 
 
 def getData(url):
@@ -103,6 +105,8 @@ def askURL(url):
     except Exception as result:
         print(result)
     return html
+
+
 
 
 if __name__ == '__main__':

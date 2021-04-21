@@ -11,34 +11,27 @@ import re
     - NavigableString: 获取标签内容
     - BeautifulSoup：获取整个文档
     - Comment：
+    BeautifulSoup默认支持Python的标准HTML解析库：
+        1 Python标准库     BeautifulSoup(html, 'html.parser')
+        2 lxml HTML解析库  BeautifulSoup(html, 'lxml')
+        3 lxml XML解析库   BeautifulSoup(html, 'lxml')
+        4 html5lib解析库   BeautifulSoup(html, 'html5lib')
 """
-'''
-import urllib.request
-url = "http://www.baidu.com"
-result = urllib.request.urlopen(url)
-with open("baidu.html", "w",encoding="utf-8") as t:
-     t.write(result.read().decode("utf-8"))
-'''
-
 '''
 file = open("baidu.html", "rb")
 html = file.read()
 bs = BeautifulSoup(html, "html.parser")
+# print(bs.prettify())  # 缩进格式
 
-# 获取标签： 只拿到第一个标签
+# 获取title标签中的所有内容： 只拿到第一个标签
 print(bs.title)
-print(type(bs.title))
-
 # 获取标签内容
 print(bs.title.string)
-print(type(bs.title.string))
-
 # 获取标签中的属性
 print(bs.a.attrs)
-
 # 获取整个文档
 print(type(bs))
-print(bs.name)
+# print(bs.head)  # 获取标签中的所有内容
 
 # 获取注释：是一个特殊的NavigableString
 print(bs.a.string)
@@ -46,11 +39,11 @@ print(bs.a.string)
 print("============================================")
 # 文档的遍历
 print(bs.head.contents[0])
-'''
-
 # 文档的搜索
 # find_all
-"""
+'''
+
+'''
 file = open("baidu.html", "rb")
 html = file.read()
 bs = BeautifulSoup(html, "html.parser")
@@ -68,31 +61,28 @@ def name_is_exists(tag):
 
 
 n_list = bs.find_all(name_is_exists)
-"""
+print(n_list)
+'''
 
 # 2.kwargs 参数
 file = open("baidu.html", "rb")
 html = file.read()
 bs = BeautifulSoup(html, "html.parser")
-c_list = bs.find_all(id="head")
-for i in c_list:
-    print(i)
+c_list = bs.find_all(id="head")  # 显示所有数据
 
 # 3.text参数
 d_list = bs.find_all(text=["地图", "hao123"])
-print(d_list)
+# print(d_list)
 e_list = bs.find_all(text = re.compile("\d"))
 # print(e_list)
-
 # 4. limit 参数
 f_list = bs.find_all("a", limit=3)
 # print(f_list)
 
 # CSS选择器
 print(bs.select("title"))  # 标签
-print(bs.select(".mnav"))  # 类名
-print(bs.select("#u1"))  # id查找
-print(bs.select("a[class='name']"))  # 属性查找
-print(bs.select("div > class"))  # 通过子标签查找
 
+print(bs.select(".mnav"))  # 类名
+
+print(bs.select("#u1"))  # id查找
 
