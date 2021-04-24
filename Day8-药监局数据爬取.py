@@ -103,7 +103,7 @@ def askURL(url):
         time.sleep(3)
         data = {
             "on": "true",
-            "page": "page",
+            "page": page,
             "pageSize": "15",
             "productName": "",
             "conditionType": "1",
