@@ -20,6 +20,7 @@ if __name__ == '__main__':
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
                       "Chrome/88.0.4324.150 Safari/537.36 "
     }
+    res = requests.get(url, head, proxies={"http": "124.205.155.153:9090"})
     html = requests.get(url, head, proxies={"http": "124.205.155.153:9090"}).text
     print(html)
     ""
