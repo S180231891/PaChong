@@ -7,7 +7,7 @@ import requests
 import urllib.request
 from bs4 import BeautifulSoup
 from lxml import etree
-
+# 智联招聘
 if __name__ == '__main__':
     url = "https://www.lagou.com/zhaopin/"
     header = {

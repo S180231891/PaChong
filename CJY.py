@@ -50,4 +50,4 @@ class Chaojiying_Client(object):
     def get_code(img_code):
         chaojiying = Chaojiying_Client('bgnice123', 'baoguo123', '915815')  # 用户中心>>软件ID 生成一个替换 96001
         im = open(img_code, 'rb').read()  # 本地图片文件路径 来替换 CJY.jpg 有时WIN系统须要//
-        return chaojiying.PostPic(im, 1902)  # 1902 验证码类型  官方网站>>价格体系 3.4+版 print 后要加()
+        return chaojiying.PostPic(im, 9004)  # 1902 验证码类型  官方网站>>价格体系 3.4+版 print 后要加()

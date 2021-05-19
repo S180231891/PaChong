@@ -24,6 +24,8 @@ def main():
     URL = "https://search.51job.com/list/000000,000000,0000,00,9,99,%25E6%2595%25B0%25E6%258D%25AE%25E5%2588%2586%25E6%259E%2590,2,{}.html?lang=c&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&ord_field=0&dibiaoid=0&line=&welfare="
     # 避免反爬机制：1时间间隔   2代理
     dataList = getData(URL)
+    print(dataList)
+    exit()
     saveDataList(dataList)
     # path = "51job.xls"
     # saveXlwt(dataList, path)
@@ -31,7 +33,7 @@ def main():
 
 def getData(url):
     dataList = []
-    for i in range(1, 20):
+    for i in range(1, 5):
         time.sleep(2)
         newUrl = url.format(i)
         html = askURL(newUrl)
@@ -105,8 +107,6 @@ def askURL(url):
     except Exception as result:
         print(result)
     return html
-
-
 
 
 if __name__ == '__main__':
