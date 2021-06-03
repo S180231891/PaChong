@@ -16,8 +16,6 @@ import random
 
 
 # 无头浏览器的设置
-
-
 def main():
     chrome_options = Options()
     chrome_options.add_argument('--headless')
